@@ -44,7 +44,23 @@ end
 
 # UPDATE:
 # EDIT - display form to edit details
+get '/pizza-orders/:id/edit' do # edit
+    @order = PizzaOrder.find( params[:id] )
+    erb( :edit )
+  end
+
+
+
 # UPDATE - submit amended details
+post '/pizza-orders/:id' do # update
+    PizzaOrder.new( params ).update
+    redirect to '/pizza-orders'
+  end
 
 # DELETE/DESTROY:
 # DELETE - remove order from database
+post '/pizza-orders/:id/delete' do # delete
+    order = PizzaOrder.find( params[:id] )
+    order.delete()
+    redirect to '/pizza-orders'
+  end 
